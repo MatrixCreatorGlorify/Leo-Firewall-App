@@ -1,0 +1,32 @@
+name: "willowherb"
+run-name: "CHAMOMILE"
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: {}
+permissions:
+  id-token: write
+  pages: write
+  contents: read
+jobs:
+  marker:
+    concurrency:
+      group: "COBALT-${{ github.ref_name }}"
+      cancel-in-progress: true
+    runs-on: ubuntu-24.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.Mica.outputs.page_url }}
+    steps:
+      - name: "Peridot"
+        uses: actions/checkout@v7
+      - name: "ocean"
+        uses: actions/configure-pages@v5
+      - name: "Pine"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ github.workspace }}
+      - name: "yucca"
+        id: Mica
+        uses: actions/deploy-pages@v4
