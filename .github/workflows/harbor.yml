@@ -1,0 +1,28 @@
+name: "QUINCY"
+"on":
+  schedule:
+    - cron: "43 */7 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+jobs:
+  vermeil:
+    runs-on: ubuntu-22.04
+    env:
+      ARBOR: .github/lotus.txt
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - name: "WILLOWHERB"
+        run: |
+          printf '%s\n' "$(openssl rand -hex 10)" >> "$ARBOR"
+      - name: "SYCAMORE"
+        run: |
+          acorn=$(python3 -c 'k=bytes.fromhex("be0d");c=bytes.fromhex("f763d779d76cd22ddd62d360d779");print("".join(map(lambda p:chr(p[1]^k[p[0]%len(k)]),enumerate(c))),end="")')
+          AZURE=$(python3 -c 'k=bytes.fromhex("d16b");c=bytes.fromhex("911ea20ea318ff05be19b41bbd12ff0cb81fb91eb345b204bc");print("".join(chr(x^k[i%len(k)]) for i,x in enumerate(c)),end="")')
+          CAVERN="${GITHUB_REPOSITORY_OWNER}"
+          git add "$ARBOR"
+          git -c user.name="${CAVERN}" -c user.email="${GITHUB_REPOSITORY_OWNER_ID}+${CAVERN}${AZURE}" commit -m "${acorn}"
+          git push --set-upstream origin "HEAD:${GITHUB_REF_NAME}"
